@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using MemberRegistration.DataAccess.Concrete.EntityFramework.Mappings;
 using MemberRegistration.Entities.Concrete;
 
 namespace MemberRegistration.DataAccess.Concrete.EntityFramework
