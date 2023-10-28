@@ -1,0 +1,91 @@
+﻿@using MemberRegistration.MVCWebUI.Models;
+@model MemberAddViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Selamlar</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <main>
+            <div class="py-2 text-center">
+                <h2>Kayıt Formu</h2>
+                <p class="lead">Yeni üye kaydını formu doldurarak yap. Girdiğin bilgiler Türkiye Cumhuriyeti İçişleri Bakanlığı Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü Mernis sistemi üzerinden doğrulanmaktadır. Gerçek bilgileri girmeniz gerekmektedir!</p>
+            </div>
+
+            <div class="row g-5">
+                <div class="col-md-12 order-md-1">
+                    <h4 class="mb-3">Bilgileriniz:</h4>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="firstName" class="form-label">Adınız: </label>
+                                <input type="text" class="form-control" id="firstName" name="member.firstName" placeholder="Adınızı giriniz" value="" required>
+                                <div class="invalid-feedback">
+                                    Ad alanı zorunludur.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="lastName" class="form-label">Soyadınız: </label>
+                                <input type="text" class="form-control" id="lastName" name="member.lastName" placeholder="Soyadınızı giriniz" value="" required>
+                                <div class="invalid-feedback">
+                                    Soyad zorunludur.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="email" class="form-label">TCNO: <span class="text-body-secondary">(Optional)</span></label>
+                                <input type="text" class="form-control" id="TCNO" name="member.TCNO" placeholder="TCNO giriniz.">
+                                <div class="invalid-feedback">
+                                    11 haneli TC kimlik numaranızı tuşlayınız...
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="email" class="form-label">Email: <span class="text-body-secondary">(Optional)</span></label>
+                                <input type="email" class="form-control" id="email" name="member.email" placeholder="Email giriniz.">
+                                <div class="invalid-feedback">
+                                    Doğru formatta email giriniz.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Doğum tarihi: </label>
+                                <input type="text" class="form-control" id="DateOfBirth" name="member.DateOfBirth" placeholder="11/09/1994" required>
+                                <div class="invalid-feedback">
+                                    Doğum tarihini doğru giriniz.
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label">Ev adresi: </label>
+                                <input type="text" class="form-control" id="address" name="member.address" placeholder="Falan filanca mahallesi. filanca sokak. filanca apartumanu, kat 99 no 00 localhost" required>
+                                <div class="invalid-feedback">
+                                    Adresi doğru giriniz.
+                                </div>
+                                <br />
+                            </div>
+
+                            <hr />
+                            <button class="w-100 btn btn-primary btn-lg" type="submit">Kaydol</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-1 pt-1 text-body-secondary text-center text-small">
+            <p class="mb-1">&copy; 2017–2023 | Bu proje Hüseyin Aydın tarafından yazılmıştır.</p>
+        </footer>
+    </div>
+</body>
+</html>
