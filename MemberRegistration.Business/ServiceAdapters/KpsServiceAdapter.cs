@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MemberRegistration.Business.KpsServiceReference;
+using MemberRegistration.Business.KpsServiceReference2;
 using MemberRegistration.Entities.Concrete;
 
 namespace MemberRegistration.Business.ServiceAdapters
