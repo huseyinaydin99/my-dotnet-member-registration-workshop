@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using MemberRegistration.Business.Abstract;
 using MemberRegistration.Entities.Concrete;
+using MemberRegistration.MVCWebUI.Filters;
 using MemberRegistration.MVCWebUI.Models;
 
 namespace MemberRegistration.MVCWebUI.Controllers
@@ -21,6 +22,7 @@ namespace MemberRegistration.MVCWebUI.Controllers
         }
 
         [HttpPost]
+        [ExceptionHandler]
         public ActionResult Add(Member member)
         {
             _memberService.Add(member);
