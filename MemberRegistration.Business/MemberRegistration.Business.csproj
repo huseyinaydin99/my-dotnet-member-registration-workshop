@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\AydinCompany.Core\bin\Debug\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\AydinCompany.Core\bin\Debug\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.2.17.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.4.2.17\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -50,14 +61,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DependencyResolvers\Ninject\Ninject\BusinessModule.cs" />
+    <Compile Include="DependencyResolvers\Ninject\Ninject\InstanceFactory.cs" />
+    <Compile Include="DependencyResolvers\Ninject\Ninject\ValidationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAdapters\IKpsService.cs" />
     <Compile Include="ServiceAdapters\KpsServiceAdapter.cs" />
+    <Compile Include="ValidationRules\FluentValidation\MemberValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AydinCompany.Core\AydinCompany.Core.csproj">
+      <Project>{73E263E4-B397-4110-9F4B-0C3ACF886319}</Project>
+      <Name>AydinCompany.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MemberRegistration.DataAccess\MemberRegistration.DataAccess.csproj">
+      <Project>{2D769571-93AC-4879-A8C8-60A9FC027E1A}</Project>
+      <Name>MemberRegistration.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MemberRegistration.Entities\MemberRegistration.Entities.csproj">
       <Project>{71D3F70C-602F-41BA-938D-34933F0BF3FF}</Project>
       <Name>MemberRegistration.Entities</Name>
@@ -69,6 +92,7 @@
     <None Include="Connected Services\KpsServiceReference\MemberRegistration.Business.KpsServiceReference.TCKimlikNoDogrulaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\KpsServiceReference\" />
@@ -85,8 +109,11 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ValidationRules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\PostSharp.4.2.17\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\packages\PostSharp.4.2.17\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
 </Project>

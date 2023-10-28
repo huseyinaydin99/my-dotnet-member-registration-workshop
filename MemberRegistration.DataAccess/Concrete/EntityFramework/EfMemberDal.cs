@@ -4,7 +4,7 @@ using MemberRegistration.Entities.Concrete;
 
 namespace MemberRegistration.DataAccess.Concrete.EntityFramework
 {
-    public class EfMemberDal : EfEntityRepositoryBase<Member, MembershipContext, IMemberDal
+    public class EfMemberDal : EfEntityRepositoryBase<Member, MembershipContext>, IMemberDal
     {
 
     }
